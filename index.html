@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do-List</title>
+  </head>
+  <body>
+    <div id="one">
+      <input id="input" type="text" /> <button onclick="add()">add</button>
+    </div>
+    <div id="two">
+      <input id="input2" type="text" />
+      <button onclick="editText()">edit</button>
+    </div>
+
+    <div id="texts"></div>
+  </body>
+</html>
+<script>
+  let textsArr = [];
+  let index;
+
+  function add(params) {
+    textsArr.push(input.value);
+    display();
+    input.value = "";
+  }
+
+  function display() {
+    texts.innerHTML = "";
+    textsArr.forEach((text, i) => {
+      texts.innerHTML += `<p>${text}  <button onclick="del(${i})"> delete </button>  <button onclick="edit(${i})"> edit </button> </p>`;
+    });
+  }
+
+  function del(i) {
+    textsArr.splice(i, 1);
+    display();
+  }
+
+  two.style.display = "none";
+
+  function edit(i) {
+    index = i;
+    input2.value = textsArr[i];
+    one.style.display = "none";
+    two.style.display = "block";
+  }
+
+  function editText() {
+    textsArr.splice(index, 1, input2.value);
+    one.style.display = "block";
+    two.style.display = "none";
+    display();
+    input2.value = "";
+  }
+</script>
